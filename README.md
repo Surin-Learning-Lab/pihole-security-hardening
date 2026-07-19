@@ -1,35 +1,56 @@
-# Screenshots
+# Pi-hole Security Hardening
 
-Drop screenshot files in this folder as you capture them. Suggested filenames referenced by the docs:
+Network-wide DNS filtering with security-oriented hardening, built on a Raspberry Pi Zero 2 W.
 
-| Filename | What to capture | Referenced in |
-|---|---|---|
-| `01-dashboard-overview.png` | Pi-hole main dashboard (queries, blocked %, top clients) | 02-blocklist-strategy.md |
-| `02-lists-configured.png` | Lists page showing the four HaGeZi lists | 02-blocklist-strategy.md |
-| `03-gravity-count.png` | Terminal output of `sudo pihole -g` showing ~312k domains | 02-blocklist-strategy.md |
-| `04-query-log-blocked.png` | Query Log filtered to blocked entries | 02-blocklist-strategy.md |
-| `05-ssh-key-test.png` | Terminal showing successful key-based login | 03-ssh-hardening.md |
-| `06-ssh-password-rejected.png` | Terminal showing `Permission denied (publickey)` on password attempt | 03-ssh-hardening.md |
-| `07-fail2ban-status.png` | Output of `sudo fail2ban-client status sshd` | 03-ssh-hardening.md |
-| `08-router-dns-config.png` | Router DHCP page showing Pi's IP as Primary DNS | 04-network-config.md |
-| `09-router-dhcp-reservation.png` | Router static IP binding for the Pi's MAC | 04-network-config.md |
-| `10-nslookup-verify.png` | `nslookup` showing Pi.hole as server and `0.0.0.0` answer | 04-network-config.md |
-| `11-h2testw-fake-card.png` | H2testw report identifying the counterfeit card | 05-troubleshooting.md |
-| `12-h2testw-good-card.png` | H2testw report showing a verified authentic card | 05-troubleshooting.md |
+This project documents the end-to-end deployment of Pi-hole as a home network's authoritative DNS server, followed by a series of hardening measures aimed at making the box appropriate for a small production role. The write-up includes the reasoning behind each choice, the operational issues encountered during the build, and the recovery procedures used to resolve them.
 
-Once captured, reference them in the docs like:
+## Overview
 
-```markdown
-![Dashboard](../screenshots/01-dashboard-overview.png)
-```
+- **Platform:** Raspberry Pi Zero 2 W, Raspberry Pi OS Lite (32-bit, Debian Trixie)
+- **Role:** Authoritative DNS resolver for a home LAN (~10-15 devices)
+- **Blocklists:** HaGeZi Multi Normal + PopupAds + Fake + Threat Intelligence (mini)
+- **Hardening:** SSH key-only authentication, root login disabled, fail2ban intrusion prevention
+- **Network integration:** Router-level DNS pointing, DHCP reservation, fallback plan documented
 
-## Redaction
+## Repository contents
 
-Before committing screenshots, blur or crop any of the following:
+| File | Purpose |
+|---|---|
+| [docs/01-installation.md](docs/01-installation.md) | Pi-hole install, apt mirror correction |
+| [docs/02-blocklist-strategy.md](docs/02-blocklist-strategy.md) | Why HaGeZi over the default StevenBlack list |
+| [docs/03-ssh-hardening.md](docs/03-ssh-hardening.md) | Key-based auth, cloud-init override fix, fail2ban |
+| [docs/04-network-config.md](docs/04-network-config.md) | Router DNS pointing, DHCP reservation, fallback |
+| [docs/05-troubleshooting.md](docs/05-troubleshooting.md) | Counterfeit SD card discovery, WiFi rejoin failures |
+| [docs/06-recovery-procedures.md](docs/06-recovery-procedures.md) | SSH lockout recovery via SD card boot partition |
+| [configs/](configs/) | Example config file diffs |
+| [screenshots/](screenshots/) | Dashboard and configuration screenshots |
 
-- Full router admin URLs beyond `192.168.1.1`
-- WiFi SSID names (personal identification)
-- Any internal MAC addresses (partially — first 3 octets are vendor OUI and fine; last 3 identify the device)
-- Public IPs (WAN address in router pages)
-- Full email addresses in Pi-hole admin
-- Detailed logs showing external destinations from other household devices
+## Skills demonstrated
+
+- Linux system administration (Debian/Raspberry Pi OS, systemd, apt)
+- DNS configuration and troubleshooting (Pi-hole, dig, nslookup)
+- SSH hardening (key management, sshd configuration, drop-in file precedence)
+- Network configuration (DHCP, DNS delegation, router integration)
+- Security defense-in-depth (key auth + fail2ban + firewall planning)
+- Operational recovery (SD card side-door key installation, filesystem-level debugging)
+- Hardware verification (counterfeit SD card detection via H2testw)
+- Documentation of failure modes and recovery paths
+
+## Status
+
+- [x] Pi-hole install and blocklist configuration
+- [x] Router DNS pointing and DHCP reservation
+- [x] SSH key-only authentication
+- [x] fail2ban configuration
+- [ ] ufw firewall rules
+- [ ] Unattended-upgrades for automated security patches
+- [ ] Unbound recursive resolver (encrypted upstream DNS)
+- [ ] Configuration backup automation
+
+## Author
+
+[Surin-Learning-Lab](https://github.com/Surin-Learning-Lab)
+
+## License
+
+MIT — see [LICENSE](LICENSE).
