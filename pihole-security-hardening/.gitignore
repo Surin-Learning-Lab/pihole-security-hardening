@@ -1,0 +1,26 @@
+# Private keys — never commit
+id_ed25519
+id_ed25519.pub
+id_rsa
+id_rsa.pub
+*.pem
+*.key
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor artifacts
+.vscode/
+.idea/
+*.swp
+*~
+
+# Draft / working files
+*.draft.md
+notes.txt
+TODO.local.md
+
+# Pi-hole Teleporter backups (may contain hostnames/IPs)
+*-teleporter.tar.gz

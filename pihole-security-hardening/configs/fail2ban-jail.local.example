@@ -1,0 +1,30 @@
+# /etc/fail2ban/jail.local
+#
+# fail2ban ships with sensible defaults for the sshd jail on Debian/Raspberry Pi OS.
+# This file is a reference — the default configuration is used in this project
+# without modification.
+#
+# To customize (optional), create /etc/fail2ban/jail.local with contents like:
+
+[DEFAULT]
+# Ban duration (seconds). Default: 600 (10 min).
+bantime = 3600
+
+# Time window in which failures are counted. Default: 600.
+findtime = 600
+
+# Number of failures before ban. Default: 5.
+maxretry = 5
+
+# IPs to never ban (e.g. your management workstation).
+# Uncomment and set as needed.
+# ignoreip = 127.0.0.1/8 ::1 192.168.1.100
+
+[sshd]
+enabled = true
+port = ssh
+# backend = systemd  # Default on Debian; reads journalctl
+
+# After editing:
+#   sudo systemctl restart fail2ban
+#   sudo fail2ban-client status sshd

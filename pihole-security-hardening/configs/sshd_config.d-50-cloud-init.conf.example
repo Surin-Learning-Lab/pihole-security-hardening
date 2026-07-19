@@ -1,0 +1,14 @@
+# /etc/ssh/sshd_config.d/50-cloud-init.conf
+#
+# Created by Raspberry Pi Imager when a password was preset during flashing.
+# By default this file contains:
+#     PasswordAuthentication yes
+#
+# Files in /etc/ssh/sshd_config.d/ are loaded BEFORE /etc/ssh/sshd_config,
+# and the first occurrence of a setting wins in sshd. This means editing
+# PasswordAuthentication in the main config has no effect while this
+# drop-in file exists with the opposite setting.
+#
+# Fix: change the value here.
+
+PasswordAuthentication no
