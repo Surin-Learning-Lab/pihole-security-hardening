@@ -7,7 +7,7 @@ Drop screenshot files in this folder as you capture them. Suggested filenames re
 | ![Dashboard](./01-dashboard-overview.png) | Pi-hole main dashboard (queries, blocked % top clients) | 02-blocklist-strategy.md |
 | ![Lists](./lists.png) | Lists page showing the four HaGeZi lists | 02-blocklist-strategy.md |
 | ![Gravity Count](./gravity_count.png) | Terminal output of `sudo pihole -g` showing ~312k domains | 02-blocklist-strategy.md |
-| ![Query Log](./04-query-log-blocked.png) | Query Log filtered to blocked entries | 02-blocklist-strategy.md |
+| ![Query Log](./query-log.png) | Query Log filtered to blocked entries | 02-blocklist-strategy.md |
 | ![SSH Key Test](./05-ssh-key-test.png) | Terminal showing successful key-based login | 03-ssh-hardening.md |
 | ![SSH Password Rejected](./06-ssh-password-rejected.png) | Terminal showing `Permission denied (publickey)` on password attempt | 03-ssh-hardening.md |
 | ![Fail2ban Status](./07-fail2ban-status.png) | Output of `sudo fail2ban-client status sshd` | 03-ssh-hardening.md |
