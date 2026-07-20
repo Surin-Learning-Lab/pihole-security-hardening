@@ -4,7 +4,7 @@ Drop screenshot files in this folder as you capture them. Suggested filenames re
 
 | Filename | What to capture | Referenced in |
 |---|---|---|
-| [![Pi-hole main dashboard](pihole-security-hardening/screenshots/01-dashboard-overview.png)](pihole-security-hardening/screenshots/01-dashboard-overview.png)
+|![Dashboard](./01-dashboard-overview.png) |
  02-blocklist-strategy.md |
 | `02-lists-configured.png` | Lists page showing the four HaGeZi lists | 02-blocklist-strategy.md |
 | `03-gravity-count.png` | Terminal output of `sudo pihole -g` showing ~312k domains | 02-blocklist-strategy.md |
