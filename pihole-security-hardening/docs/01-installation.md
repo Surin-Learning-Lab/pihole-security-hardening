@@ -21,6 +21,9 @@ Pre-configuring these avoids needing a keyboard and monitor during first boot on
 
 ## First boot and SSH access
 
+* use ssh-keygen -R 192.168.1.5
+to reset if pi is using new sd
+
 ```bash
 ssh pi@piHole.local
 # or by IP once known:
